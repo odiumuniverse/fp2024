@@ -1,7 +1,8 @@
 (library
  (name EIshbaev_lib)
  (public_name EIshbaev.Lib)
- (modules Ast)
+ (modules Ast Parser)
+ (libraries angstrom)
  (preprocess
   (pps ppx_deriving.show))
  (instrumentation
