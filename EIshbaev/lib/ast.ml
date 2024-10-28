@@ -51,7 +51,7 @@ type expr =
   | ExprTuple of expr * expr * expr list (** list with x_i separeted via "," *)
   | ExprFunc of name * expr (** anonymous functions *)
   | ExprCond of expr * expr * expr (** if then else *)
-  | ExprLet of recursive * (pattern * expr) list * expr (** let rec fun *)
+  | ExprLet of recursive * name * expr * expr option (** let rec fun *)
   | ExprApp of expr * expr (** application *)
   | ExprMatch of expr * (pattern * expr) list (** match x_1 with | x_2 -> x_3 | ... *)
 [@@deriving show { with_path = false }]

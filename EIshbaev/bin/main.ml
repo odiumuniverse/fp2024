@@ -8,21 +8,18 @@ let () =
   let fact : structure =
     [ ExprLet
         ( Rec
-        , [ ( PatVar "fact"
-            , ExprFunc
-                ( "x"
-                , ExprCond
-                    ( ExprBinop (Lesq, ExprVar "x", ExprConst (ConstInt 1))
-                    , ExprConst (ConstInt 1)
-                    , ExprBinop
-                        ( Mul
-                        , ExprVar "x"
-                        , ExprApp
-                            ( ExprVar "fact"
-                            , ExprBinop (Sub, ExprVar "x", ExprConst (ConstInt 1)) ) ) )
-                ) )
-          ]
-        , ExprVar "n" )
+        , "fact"
+        , ExprVar "n"
+        , Some
+            (ExprCond
+               ( ExprBinop (Eql, ExprVar "n", ExprConst (ConstInt 1))
+               , ExprConst (ConstInt 1)
+               , ExprBinop
+                   ( Mul
+                   , ExprVar "n"
+                   , ExprApp
+                       ( ExprVar "fact"
+                       , ExprBinop (Sub, ExprVar "n", ExprConst (ConstInt 1)) ) ) )) )
     ]
   in
   print_endline (show_structure fact)
